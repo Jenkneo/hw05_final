@@ -121,7 +121,7 @@ class PostsTest(TestCase):
         """Страница выводит изображения постов."""
         post = Post.objects.create(
             author=self.user1,
-            text=f'Тесовый пост с картинкой',
+            text='Тесовый пост с картинкой',
             image=self.uploaded_image,
             group=self.group1
         )
@@ -144,7 +144,7 @@ class PostsTest(TestCase):
         """Страница post_detail выводит изображене поста."""
         post = Post.objects.create(
             author=self.user1,
-            text=f'Тесовый пост с картинкой',
+            text='Тесовый пост с картинкой',
             image=self.uploaded_image,
             group=self.group1
         )
@@ -261,16 +261,16 @@ class PaginatorTest(TestCase):
         super().setUpClass()
         cls.user = User.objects.create_user(username='PaginatorTestUser')
         cls.group = Group.objects.create(
-            title=f'Тестовая группа',
-            slug=f'test_slug',
-            description=f'Тестовое описание группы'
+            title='Тестовая группа',
+            slug='test_slug',
+            description='Тестовое описание группы'
         )
 
         temp_data = []
         for num in range(1, 40 + 1):
             temp_data.append(Post(
                 author=cls.user,
-                text=f'Тесовый пост',
+                text='Тесовый пост',
                 group=cls.group
             ))
         Post.objects.bulk_create(temp_data, batch_size=99)
@@ -333,7 +333,7 @@ class FollowTest(TestCase):
                     user=self.user2.id
                 ).exists()
             )
-        response = self.follower.get(
+        self.follower.get(
             reverse(
                 'posts:profile_unfollow',
                 kwargs={'username': self.user1.username}
@@ -389,7 +389,7 @@ class CacheTest(TestCase):
         cls.user = User.objects.create_user(username='CacheTestUser')
         cls.post = Post.objects.create(
             author=cls.user,
-            text=f'Тесты на проверку кеша'
+            text='Тесты на проверку кеша'
         )
 
     def test_cache_index_page(self):

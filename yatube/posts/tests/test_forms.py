@@ -73,10 +73,10 @@ class PostCreateFormTests(TestCase):
             reverse('posts:profile', kwargs={'username': self.user.username})
         )
         post = Post.objects.filter(
-                text='Тестовая запись',
-                group=self.group,
-                image='posts/image1.gif'
-            )
+            text='Тестовая запись',
+            group=self.group,
+            image='posts/image1.gif'
+        )
         self.assertEqual(Post.objects.count(), posts_count + 1)
         self.assertTrue(post.exists())
         post.delete()
@@ -200,7 +200,7 @@ class PostCreateFormTests(TestCase):
         """Не авторизированный пользователь может оставлять комментарии"""
         comments_count = Comment.objects.filter(post=self.post).count()
         form_data = {'text': 'Тестовый комментарий'}
-        response = Client().post(
+        Client().post(
             reverse('posts:add_comment', kwargs={'post_id': self.post.id}),
             data=form_data,
             follow=True

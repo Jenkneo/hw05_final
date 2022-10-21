@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .models import Post, Group, User, Comment, Follow
+from .models import Post, Group, User, Follow
 from .forms import PostForm, CommentForm
 from .utils import page_func
 
