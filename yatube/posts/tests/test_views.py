@@ -320,7 +320,7 @@ class FollowTest(TestCase):
 
     def test_follow(self):
         """Проверка подписки и отписки на автора"""
-        response = self.follower.get(
+        self.follower.get(
             reverse(
                 'posts:profile_follow',
                 kwargs={'username': self.user1.username}
